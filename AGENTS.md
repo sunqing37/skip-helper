@@ -1,0 +1,30 @@
+# Skip Helper — AI 协作入口
+
+独立 Android 开屏广告跳过工具，applicationId `dev.skiphelper`。先读本文件，再按任务读取 `.agent/`；不维护 `.ai/`、`.agents/` 等重复正文。
+
+## 必读
+
+- [.agent/project.md](.agent/project.md)：实际架构、数据流、线程归属、构建环境。
+- [.agent/rules/development.md](.agent/rules/development.md)：代码、性能、权限、数据和界面约束。
+- [.agent/rules/build.md](.agent/rules/build.md)：Python 构建脚本、最小编译、并发与验收边界。
+
+## 按场景阅读
+
+- 性能检查：先读 [.agent/performance.md](.agent/performance.md)，区分静态风险与真机测量；没有证据不得声称帧率、耗电或内存改善百分比。
+- 功能使用及手动验收：[README.md](README.md)。用户负责手机测试，未经新授权不要启动、点击或操纵手机。
+- 调整协作规范：[.agent/README.md](.agent/README.md)。参考 VIAIM_Android 的集中式入口组织方式，仅引入本项目需要的规则。
+
+## 用户约束
+
+1. 不新增自动化测试，所有项目手动测试。
+2. 新增持久化或序列化实体时处理混淆；使用生成序列化器和明确字段名。
+3. 脚本、文件和编译输出使用 UTF-8。
+4. 默认只保证 Java/Kotlin 编译；先等待其他构建结束。完整打包需要用户明确批准；未改代码的 review 不重复构建。
+5. 不擅自安装、启动或测试手机；安装授权不等于自动授予系统权限。已有会话授权按其明确范围执行。
+6. 若未来涉及 vision-sdk，源码位于 `D:\code\android\android_sdk`；仅 libs 中没有的本地依赖才 publish 到 mavenLocal，并检查缓存。当前项目不依赖该 SDK。
+7. 浏览器优先使用内置浏览器。问题单能获取时间时不重复询问。
+8. 问题单评论简洁：`问题原因：…\n解决方式：…\n影响功能：…`。发送外部评论须有用户授权。
+9. 参考工程：Android `D:\code\android\VIAIM_Android`；iOS `D:\code\work\viaim\VIAIM_IOS`。不因参考而修改这些工程或继承其业务配置。
+10. “更新/拉取/同步代码”仅执行必要 Git 同步：确认分支、工作区、上游，获取并同步当前分支；保留未提交改动。不扩大为 review、编译、测试、安装、文档修改、提交、推送或通知。冲突无法安全处理时说明情况。
+
+当前仅单 `app` 模块，不为遵循参考工程而强行拆模块、引入 Hilt/Room/网络层或添加测试体系。

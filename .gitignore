@@ -1,0 +1,49 @@
+# Gradle / Android generated files (keep gradle/wrapper in Git)
+.gradle/
+.kotlin/
+**/build/
+.build/
+.cxx/
+.externalNativeBuild/
+captures/
+*.apk
+*.aab
+*.ap_
+*.hprof
+*.log
+hs_err_pid*
+replay_pid*
+
+# Machine configuration and signing secrets
+local.properties
+keystore.properties
+key.properties
+signing.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# IDE / editor state
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*~
+
+# Python environment and bytecode
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

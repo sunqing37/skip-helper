@@ -1,0 +1,3 @@
+<resources>
+    <string name="service_description">仅在您选择的应用进入前台后的短时间内，读取界面并点击明确的开屏跳过按钮。截图识别需另外逐应用开启；图片只在本机内存中处理。可随时关闭。</string>
+</resources>
