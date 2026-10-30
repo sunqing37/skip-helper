@@ -11,24 +11,25 @@
 ## 命令
 
 ```powershell
-# 默认最小编译（本机示例；脚本本身不硬编码环境目录）
-python -X utf8 build.py --java-home D:\env\jdk\jdk17
-python -X utf8 build.py compile --variant release --java-home D:\env\jdk\jdk17
+# 默认最小编译（提前配置 JAVA_HOME，或确保 PATH 中的 Java 来自完整 JDK 17+）
+python -X utf8 build.py
+python -X utf8 build.py compile --variant release
 
 # 仅预览，不创建日志/锁，不构建或操作手机
-python -X utf8 build.py debug --dry-run --java-home D:\env\jdk\jdk17
+python -X utf8 build.py debug --dry-run
 
 # 用户已明确批准 APK 打包时
-python -X utf8 build.py debug --allow-full-build --java-home D:\env\jdk\jdk17
+python -X utf8 build.py debug --allow-full-build
 
 # 同时获得安装授权；不启动应用
-python -X utf8 build.py debug --allow-full-build -i --serial RFCXA1K9F7N --java-home D:\env\jdk\jdk17
+python -X utf8 build.py debug --allow-full-build -i --serial SERIAL
 
 # 复用已有 APK，不重复构建
-python -X utf8 build.py install --serial RFCXA1K9F7N
+python -X utf8 build.py install --serial SERIAL
 python -X utf8 build.py install --apk path\to\signed.apk --serial SERIAL
 ```
 
+- 示例中的 `SERIAL` 和 `path\to\signed.apk` 是占位符，使用时替换为自己的设备序列号和文件路径；不要将真实值写入仓库文档。
 - `--launch` 是额外明确的启动操作；当前用户要求自行测试，不应自动添加。
 - 多设备必须 `--serial`；未授权/离线设备报错，不猜设备。不卸载、不清数据、不自动降级、不替用户开启无障碍。
 - `--java-home` > `JAVA_HOME` > PATH；需要完整 JDK 17+（含 jps）。`--sdk-root` 可临时指定 SDK，不改全局环境或 local.properties。

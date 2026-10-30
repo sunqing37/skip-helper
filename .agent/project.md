@@ -2,7 +2,7 @@
 
 ## 定位与环境
 
-- Android 8.0+，无需 root；Android 11+ 可逐应用启用 OCR。iOS 不实现。
+- Android 8.0+，无需 root；Android 11+ 可逐应用启用 OCR。
 - 单一 `app` 模块；Kotlin 2.0.21、AGP 8.11.1、Gradle 8.13、JDK 17+、compile/target SDK 35、min SDK 26。
 - Compose + Material 3；DataStore Preferences 保存版本化 JSON；Kotlin Serialization；ML Kit 内置中文和拉丁识别模型。
 - 无服务器、账号、远程规则和联网权限。版本以 `app/build.gradle.kts` 为准，不在多个文档硬编码版本。
@@ -22,7 +22,7 @@ SkipAccessibilityService：前台会话、事件、生命周期、最终执行
   └─ SettingsStore：读取授权/配置，写入有限操作记录
 ```
 
-- `MainActivity` 目前承载 UI 状态与事件编排，**尚未引入 ViewModel**。参考 VIAIM 的分层/UDF 思路，但不要把现状描述为完整 MVVM。
+- `MainActivity` 目前承载 UI 状态与事件编排，**尚未引入 ViewModel**，不要把现状描述为完整 MVVM。
 - `data/Models.kt` 是持久化模型；`engine` 中的 `Screen/Element/Candidate` 是短生命周期快照，不持有 AccessibilityNodeInfo。
 - 共享外观复用 `ui/DesignSystem.kt`；列表、概览和记录以纯参数回调组件组织。系统权限只由用户操作授权。
 - 新功能若导致 Activity 状态明显膨胀，可在对应任务内渐进提取 ViewModel + Repository；本轮不做全工程架构迁移。

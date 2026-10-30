@@ -44,18 +44,18 @@ Android 开屏广告跳过工具。用户选择应用并开启无障碍服务后
 
 使用 JDK 17、Android SDK 35、Gradle 8.13。`local.properties` 中配置本机 SDK 路径，该文件不应提交。仓库包含 Gradle Wrapper。
 
-使用 Python 3.10+ 的统一入口，默认只编译 Java/Kotlin。脚本会检查当前用户的 Gradle 构建并等待，指定 UTF-8 输出并保存日志：
+使用 Python 3.10+ 的统一入口，默认只编译 Java/Kotlin。提前配置 `JAVA_HOME`，或确保 PATH 中的 Java 来自完整 JDK 17+。脚本会检查当前用户的 Gradle 构建并等待，指定 UTF-8 输出并保存日志：
 
 ```powershell
-python -X utf8 build.py --java-home D:\env\jdk\jdk17
+python -X utf8 build.py
 
 # 仅预览打包计划
-python -X utf8 build.py debug --dry-run --java-home D:\env\jdk\jdk17
+python -X utf8 build.py debug --dry-run
 
 # 已获得人工打包授权后生成 APK
-python -X utf8 build.py debug --allow-full-build --java-home D:\env\jdk\jdk17
+python -X utf8 build.py debug --allow-full-build
 
-# 已获得安装授权后安装已有 APK，默认不启动
+# 已获得安装授权后安装已有 APK，默认不启动；SERIAL 替换为自己的设备序列号
 python -X utf8 build.py install --serial SERIAL
 ```
 
@@ -90,9 +90,7 @@ python -X utf8 build.py install --serial SERIAL
 
 至少覆盖 Android 8–10 基础路径和 Android 11+ OCR 路径，并记录手机型号、系统版本、目标 App 版本和识别结果。尚未指定首批目标 App，没有预置未经验证的专属规则。
 
-## 平台与分发
-
-iOS 普通未越狱设备没有对应的通用跨 App 读取/点击接口，本项目不包含 iOS 客户端。
+## 分发
 
 个人侧载是首版目标，不承诺应用商店上架。Google Play 的 [Device and Network Abuse](https://support.google.com/googleplay/android-developer/answer/16559646?hl=en) 政策限制干扰其他 App 广告展示的应用；确定分发渠道后应另行评估该渠道政策。
 
